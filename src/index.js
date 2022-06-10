@@ -17,7 +17,8 @@ app.get("/",(req,res)=>{
 app.get("/studenti",(req,res)=>{
     let studenti = [
         {jmbag: 1, mail: "mail@mail.com", ime:"Ivan", prezime:"Ivica"},
-        {jmbag: 2, mail: "snail@snail.com", ime:"Pero", prezime:"Perica"}
+        {jmbag: 2, mail: "snail@snail.com", ime:"Pero", prezime:"Perica"},
+        {jmbag: 3, mail: "lail@lail.com", ime:"Miro", prezime:"Miric"}
     ];
     res.status(200);
     res.send(studenti);
@@ -33,7 +34,14 @@ app.post("/studenti",(req,res)=>{
 //patch test za studente
 app.patch("/studenti/:jmbag",(req, res)=>{
     console.log("Podaci", req.params.jmbag, req.body);
-    res.status(201);
+    res.status(200);
+    res.send();
+});
+
+//delete test za studente
+app.delete("/studenti/:jmbag",(req, res)=>{
+    console.log("Podaci", req.params.jmbag);
+    res.status(200);
     res.send();
 })
 
