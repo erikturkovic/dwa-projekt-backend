@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-console.log("works")
 
 const app = express();
 const port = 3000;
@@ -45,7 +44,39 @@ app.delete("/studenti/:jmbag",(req, res)=>{
     res.send();
 })
 
+//get test za poslodavce
+app.get("/poslodavci",(req,res)=>{
+    let poslodavci = [
+        {id: 1, mail: "lol@lol.com", ime:"Roko", prezime:"Rokic"},
+        {id: 2, mail: "lmao@lmao.com", ime:"Marko", prezime:"Markic"},
+        {id: 3, mail: "rofl@rofl.com", ime:"Filip", prezime:"Fico"}
+    ];
+    res.status(200);
+    res.send(poslodavci);
+});
+
+//post test za poslodavce
+app.post("/poslodavci",(req,res)=>{
+    console.log("Podaci",req.body);
+    res.status(201);
+    res.send();
+});
+
+//patch test za poslodavce
+app.patch("/poslodavci/:id",(req, res)=>{
+    console.log("Podaci", req.params.id, req.body);
+    res.status(200);
+    res.send();
+});
+
+//delete test za poslodave
+app.delete("/poslodavci/:id",(req, res)=>{
+    console.log("Podaci", req.params.id);
+    res.status(200);
+    res.send();
+})
+
 app.listen(port,()=>{
-    console.log("listening on port ${port}")
+    console.log("listening on port")
 });
 
