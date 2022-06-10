@@ -13,6 +13,7 @@ app.get("/",(req,res)=>{
     res.send("hello za warudo!");
 });
 
+//get test za studente
 app.get("/studenti",(req,res)=>{
     let studenti = [
         {jmbag: 1, mail: "mail@mail.com", ime:"Ivan", prezime:"Ivica"},
@@ -20,6 +21,13 @@ app.get("/studenti",(req,res)=>{
     ];
     res.status(200);
     res.send(studenti);
+});
+
+//post test za studente
+app.post("/studenti",(req,res)=>{
+    console.log("POdaci",req.body);
+    res.status(201);
+    res.send();
 });
 
 app.listen(port,()=>{
