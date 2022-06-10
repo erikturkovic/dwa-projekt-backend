@@ -8,9 +8,9 @@ const port = 3000;
 app.use(express.json());
 app.use(cors());
 
-
+//hellooo world
 app.get("/",(req,res)=>{
-    res.send("hello za warudo!");
+    res.send("hello world!");
 });
 
 //get test za studente
@@ -29,6 +29,13 @@ app.post("/studenti",(req,res)=>{
     res.status(201);
     res.send();
 });
+
+//patch test za studente
+app.patch("/studenti/:jmbag",(req, res)=>{
+    console.log("Podaci", req.params.jmbag, req.body);
+    res.status(201);
+    res.send();
+})
 
 app.listen(port,()=>{
     console.log("listening on port ${port}")
