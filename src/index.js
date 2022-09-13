@@ -14,11 +14,11 @@ app.get("/",(req,res)=>{
 
 //get test za studente
 app.get("/studenti",(req,res)=>{
-    let studenti = [
-        {jmbag: 1, mail: "mail@mail.com", ime:"Ivan", prezime:"Ivica"},
-        {jmbag: 2, mail: "snail@snail.com", ime:"Pero", prezime:"Perica"},
-        {jmbag: 3, mail: "lail@lail.com", ime:"Miro", prezime:"Miric"}
-    ];
+//    let studenti = [
+//        {jmbag: 1, mail: "mail@mail.com", ime:"Ivan", prezime:"Ivica"},
+//        {jmbag: 2, mail: "snail@snail.com", ime:"Pero", prezime:"Perica"},
+//        {jmbag: 3, mail: "lail@lail.com", ime:"Miro", prezime:"Miric"}
+//   ];
     res.status(200);
     res.send(studenti);
 });
