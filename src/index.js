@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 
+import connect from "./db.js"
+
 const app = express();
 const port = 3000;
 
@@ -12,21 +14,28 @@ app.get("/",(req,res)=>{
     res.send("hello world!");
 });
 
-//get test za studente
-app.get("/studenti",(req,res)=>{
-//    let studenti = [
-//        {jmbag: 1, mail: "mail@mail.com", ime:"Ivan", prezime:"Ivica"},
-//        {jmbag: 2, mail: "snail@snail.com", ime:"Pero", prezime:"Perica"},
-//        {jmbag: 3, mail: "lail@lail.com", ime:"Miro", prezime:"Miric"}
-//   ];
+//get za studente
+app.get("/studenti",async(req,res)=>{
+    let db = await connect();
+    let kolekcija = db.collection("Studenti");
+    let cursor = await kolekcija.find();
+    let data = await cursor.toArray();
     res.status(200);
-    res.send(studenti);
+    res.json(data);
 });
 
-//post test za studente
-app.post("/studenti",(req,res)=>{
-    console.log("POdaci",req.body);
-    res.status(201);
+//post za studente
+app.post("/studenti",async(req,res)=>{
+
+    let doc = req.body;
+    console.log(doc);
+
+    let db = await connect();
+    let kolekcija = db.collection("Studenti");
+
+    
+    let rezultat = await kolekcija.insertOne(doc)
+
     res.send();
 });
 
