@@ -1,13 +1,19 @@
 import express from "express";
 import cors from "cors";
+import mongoose from "mongoose";
+import bodyParser from "body-parser";
+
 
 import connect from "./db.js"
 
 const app = express();
 const port = 3000;
 
+app.use(bodyParser)
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.json());
+
 
 //hellooo world
 app.get("/",(req,res)=>{
@@ -54,20 +60,30 @@ app.delete("/studenti/:jmbag",(req, res)=>{
 })
 
 //get test za poslodavce
-app.get("/poslodavci",(req,res)=>{
-    let poslodavci = [
-        {id_poslodavca: 1, mail: "lol@lol.com", ime:"Roko", prezime:"Rokic"},
-        {id_poslodavca: 2, mail: "lmao@lmao.com", ime:"Marko", prezime:"Markic"},
-        {id_poslodavca: 3, mail: "rofl@rofl.com", ime:"Filip", prezime:"Fico"}
-    ];
+app.get("/poslodavci",async(req,res)=>{
+
+    let db = await connect();
+    let kolekcija = db.collection("Poslodavci");
+    let cursor = await kolekcija.find();
+    let data = await cursor.toArray();
     res.status(200);
-    res.send(poslodavci);
+    res.json(data);
+
+
+    res.status(200);
+    res.send();
 });
 
 //post test za poslodavce
-app.post("/poslodavci",(req,res)=>{
-    console.log("Podaci",req.body);
-    res.status(201);
+app.post("/poslodavci",async(req,res)=>{
+    let doc = req.body;
+    console.log(doc);
+
+    let db = await connect();
+    let kolekcija = db.collection("Poslodavci");
+
+    
+    let rezultat = await kolekcija.insertOne(doc)
     res.send();
 });
 
@@ -87,11 +103,7 @@ app.delete("/poslodavci/:id_poslodavca",(req, res)=>{
 
 //get test za ponude
 app.get("/ponude",(req,res)=>{
-    let ponude = [
-        {id_ponude: 1, id_poslodavca:1, posao:"intern" , prijavljeni:[{jmbag:1},{jmbag:2}]},
-        {id_ponude: 2, id_poslodavca:2, posao:"konobar", prijavljeni:[{jmbag:2},{jmbag:3}]},
-        {id_ponude: 3, id_poslodavca:3, posao:"dostavljač" , prijavljeni:[{jmbag:3},{jmbag:1}]}
-    ];
+
     res.status(200);
     res.send(ponude);
 });
@@ -119,11 +131,7 @@ app.delete("/ponude/:id_ponude",(req, res)=>{
 
 //get test za detalje studenta
 app.get("/studenti/detalji",(req,res)=>{
-    let detalji_studenta = [
-    {jmbag:1, fakultet: "a bo", godina:"3",studij:"rač"},
-    {jmbag:2, fakultet: "a bo", godina:"1",studij:"stro"},
-    {jmbag:3, fakultet: "a bo", godina:"2",studij:"inf"}
-    ];
+
     res.status(200);
     res.send(detalji_studenta);
 });
@@ -151,11 +159,6 @@ app.delete("/studenti/detalji/:jmbag",(req, res)=>{
 
 //get test za detalje biznisa
 app.get("/biznis",(req,res)=>{
-    let biznis = [
-    {id_biznisa:1, id_poslodavca: 1 , ime_biznisa:"wow.d.o.o.", mjesto_hq:"Pula"},
-    {id_biznisa:2, id_poslodavca: 2 , ime_biznisa:"hmm.d.o.o.", mjesto_hq:"Pula"},
-    {id_biznisa:3, id_poslodavca: 3, ime_biznisa:"hah.d.o.o.", mjesto_hq:"Pula"}
-    ];
     res.status(200);
     res.send(biznis);
 });
