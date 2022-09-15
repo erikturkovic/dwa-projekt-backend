@@ -1,7 +1,8 @@
+import dotenv from "dotenv"
+dotenv.config();
 import express from "express";
 import cors from "cors";
 import mongo from 'mongodb';
-
 import auth from './auth.js'
 import connect from "./db.js"
 
@@ -47,7 +48,15 @@ app.post("/auth",async(req,res)=>{
 
 });
 
-app.get('/tajna')
+app.get('/tajna',(req,res)=>{
+
+    let ok = auth.verify(req,res);
+    if(!ok){
+        return;
+    }
+
+    res.json({message:"yo: "+ req.jwt.email})
+})
 
 
 app.listen(port, () => console.log(`Slušam na portu ${port}`));

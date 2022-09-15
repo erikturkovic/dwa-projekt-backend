@@ -38,7 +38,7 @@ export default{
         if(korisnikData && korisnikData.password && (await bcrypt.compare(password, korisnikData.password))){;
             
             delete korisnikData.password;
-            let token = jwt.sign(korisnikData,"shhh",{
+            let token = jwt.sign(korisnikData,process.env.JWT_SECRET,{
                 algorithm:"HS512",
                 expiresIn:"1week"
             });
@@ -50,5 +50,25 @@ export default{
         else {
             throw new Error("cannont auth")
         }
+    },
+    verify(req,res){
+        try{
+        let authorization = req.headers.authorization.split(' ');
+        let type = authorization[0];
+        let token= authorization[1];
+    
+        if(type !== "Bearer"){
+             res.status(401).send()
+             return false;
+        }
+        else{
+            req.jwt = jwt.verify(token,process.env.JWT_SECRET); 
+            return true;           
+        } 
+    }catch(e){
+        res.status(401).send();
+        return false
+    }   
+
     }
     }
