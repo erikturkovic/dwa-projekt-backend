@@ -9,6 +9,24 @@ await db.collection("Korisnici").createIndex({email: 1}, {unique: true});
 });
 
 export default{
+
+    async unesiPodatkeStudenta(detaljiStudenta){
+
+        let db = await connect()
+        let doc ={
+            email: detaljiStudenta.email,
+            vrsta: detaljiStudenta.vrsta,
+            ime: detaljiStudenta.ime,
+            prezime: detaljiStudenta.prezime,
+            fakultet: detaljiStudenta.fakultet,
+            jmbag: detaljiStudenta.jmbag,
+            godina: detaljiStudenta.godina,
+            kratkiOpis: detaljiStudenta.kratkiOpis,
+        }
+        let result =  await db.collection('detaljiStudenta').insertOne(doc);
+
+    },
+
     async registerKorisnik(korisnikData){
 
         let db = await connect();
@@ -44,7 +62,8 @@ export default{
             });
             return{
                 token,
-                email: korisnikData.email
+                email: korisnikData.email,
+                vrsta: korisnikData.vrsta
             }
         }
         else {

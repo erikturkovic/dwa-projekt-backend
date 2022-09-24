@@ -16,10 +16,24 @@ app.use(cors());
 app.get("/korisnici",async(req,res)=>{
     let db = await connect();
     let kolekcija = db.collection("Korisnici");
-    let cursor = await kolekcija.find();
+    let cursor = await kolekcija.find({},{fields:{email: true }});
     let korisnikData = await cursor.toArray();
     res.status(200);
     res.json(korisnikData);
+});
+
+//post za detalje studenata
+app.post("/detaljiStudenta",async(req,res)=>{
+    let detaljiStudenta = req.body;
+
+    let id;
+    try{
+        id = await auth.unesiPodatkeStudenta(detaljiStudenta);
+    }
+    catch(e){
+        res.status(500).json({error: e.message});
+    }
+    res.json(detaljiStudenta)
 });
 
 //post za korisnike
