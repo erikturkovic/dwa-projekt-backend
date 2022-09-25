@@ -6,8 +6,12 @@ import jwt from "jsonwebtoken";
 async () => {
   let db = await connect();
   await db.collection("Korisnici").createIndex({ email: 1 }, { unique: true });
-  await db.collection("detaljiPoslodavca").createIndex({ email: 1 }, { unique: true });
-  await db.collection("detaljiStudenta").createIndex({ email: 1 }, { unique: true });
+  await db
+    .collection("detaljiPoslodavca")
+    .createIndex({ email: 1 }, { unique: true });
+  await db
+    .collection("detaljiStudenta")
+    .createIndex({ email: 1 }, { unique: true });
 };
 
 export default {
@@ -26,19 +30,32 @@ export default {
     let result = await db.collection("detaljiStudenta").insertOne(doc);
   },
 
-  async unesiPodatkePoslodavca(detaljiPoslodavca){
-
+  async unesiPodatkePoslodavca(detaljiPoslodavca) {
     let db = await connect();
     let doc = {
-        email: detaljiPoslodavca.email,
-        vrsta: detaljiPoslodavca.vrsta,
-        ime: detaljiPoslodavca.ime,
-        prezime: detaljiPoslodavca.prezime,
-        radimU: detaljiPoslodavca.radimU,
-        kratkiOpisP: detaljiPoslodavca.kratkiOpisP
+      email: detaljiPoslodavca.email,
+      vrsta: detaljiPoslodavca.vrsta,
+      ime: detaljiPoslodavca.ime,
+      prezime: detaljiPoslodavca.prezime,
+      radimU: detaljiPoslodavca.radimU,
+      kratkiOpisP: detaljiPoslodavca.kratkiOpisP,
     };
     let result = await db.collection("detaljiPoslodavca").insertOne(doc);
+  },
 
+  async objaviPonudu(detaljiPonuda) {
+    let db = await connect();
+    let doc = {
+      objavio: detaljiPonuda.email,
+      imePrakse: detaljiPonuda.imePrakse,
+      kratkiOpisPO: detaljiPonuda.kratkiOpisPO,
+      placeno: detaljiPonuda.placeno,
+      knhr: detaljiPonuda.knhr,
+      mjesto: detaljiPonuda.mjesto,
+      tvrtka: detaljiPonuda.tvrtka,
+      detaljniOpis: detaljiPonuda.detaljniOpis,
+    };
+    let result = await db.collection("detaljiPonuda").insertOne(doc);
   },
 
   async registerKorisnik(korisnikData) {

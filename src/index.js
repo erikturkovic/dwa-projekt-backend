@@ -64,6 +64,20 @@ app.post("/detaljiPoslodavca",async(req,res)=>{
     res.json(detaljiPoslodavca)
 });
 
+//post objave ponuda
+app.post("/detaljiPonuda",async(req,res)=>{
+    let detaljiPonuda = req.body;
+
+    let id;
+    try{
+        id = await auth.objaviPonudu(detaljiPonuda);
+    }
+    catch(e){
+        res.status(500).json({error: e.message});
+    }
+    res.json(detaljiPonuda)
+});
+
 //auth za korisnike
 app.post("/auth",async(req,res)=>{
 
