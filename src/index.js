@@ -15,8 +15,16 @@ app.use(cors());
 //get za korisnike
 app.get("/korisnici",async(req,res)=>{
     let db = await connect();
+    let query = req.query;
     let kolekcija = db.collection("Korisnici");
-    let cursor = await kolekcija.find({},{fields:{email: true }});
+
+    let selekcija ={};
+    if (query.email){
+        selekcija.email = query.email
+    }
+
+
+    let cursor = await kolekcija.find(selekcija);
     let korisnikData = await cursor.toArray();
     res.status(200);
     res.json(korisnikData);
@@ -50,6 +58,23 @@ app.post("/detaljiStudenta",async(req,res)=>{
     res.json(detaljiStudenta)
 });
 
+//get za detalje student
+app.get("/detaljiStudenta",async(req,res)=>{
+    let db = await connect();
+    let query = req.query;
+    let kolekcija = db.collection("detaljiStudenta");
+
+    let selekcija ={};
+    if (query.email){
+        selekcija.email = query.email
+    }
+
+    let cursor = await kolekcija.find(selekcija);
+    let korisnikData = await cursor.toArray();
+    res.status(200);
+    res.json(korisnikData);
+})
+
 //post za detalje poslodavca
 app.post("/detaljiPoslodavca",async(req,res)=>{
     let detaljiPoslodavca = req.body;
@@ -64,6 +89,23 @@ app.post("/detaljiPoslodavca",async(req,res)=>{
     res.json(detaljiPoslodavca)
 });
 
+//get za detalje poslodavca
+app.get("/detaljiPoslodavca",async(req,res)=>{
+    let db = await connect();
+    let query = req.query;
+    let kolekcija = db.collection("detaljiPoslodavca");
+
+    let selekcija ={};
+    if (query.email){
+        selekcija.email = query.email
+    }
+
+    let cursor = await kolekcija.find(selekcija);
+    let korisnikData = await cursor.toArray();
+    res.status(200);
+    res.json(korisnikData);
+})
+
 //post objave ponuda
 app.post("/detaljiPonuda",async(req,res)=>{
     let detaljiPonuda = req.body;
@@ -76,6 +118,16 @@ app.post("/detaljiPonuda",async(req,res)=>{
         res.status(500).json({error: e.message});
     }
     res.json(detaljiPonuda)
+});
+
+//Get za objave ponuda
+app.get("/detaljiPonuda",async(req,res)=>{
+    let db = await connect();
+    let kolekcija = db.collection("detaljiPonuda");
+    let cursor = await kolekcija.find({},{fields:{email: true }});
+    let detaljiPonuda = await cursor.toArray();
+    res.status(200);
+    res.json(detaljiPonuda);
 });
 
 //auth za korisnike

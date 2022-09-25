@@ -6,12 +6,8 @@ import jwt from "jsonwebtoken";
 async () => {
   let db = await connect();
   await db.collection("Korisnici").createIndex({ email: 1 }, { unique: true });
-  await db
-    .collection("detaljiPoslodavca")
-    .createIndex({ email: 1 }, { unique: true });
-  await db
-    .collection("detaljiStudenta")
-    .createIndex({ email: 1 }, { unique: true });
+  await db.collection("detaljiPoslodavca").createIndex({ email: 1 }, { unique: true });
+  await db.collection("detaljiStudenta").createIndex({ email: 1 }, { unique: true });
 };
 
 export default {
@@ -47,6 +43,7 @@ export default {
     let db = await connect();
     let doc = {
       objavio: detaljiPonuda.email,
+      objavljeno: detaljiPonuda.objavljeno,
       imePrakse: detaljiPonuda.imePrakse,
       kratkiOpisPO: detaljiPonuda.kratkiOpisPO,
       placeno: detaljiPonuda.placeno,
