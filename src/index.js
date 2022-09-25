@@ -22,6 +22,20 @@ app.get("/korisnici",async(req,res)=>{
     res.json(korisnikData);
 });
 
+//post za korisnike
+app.post("/korisnici",async(req,res)=>{
+    let korisnikData = req.body;
+
+    let id;
+    try{
+        id = await auth.registerKorisnik(korisnikData);
+    }
+    catch(e){
+        res.status(500).json({error: e.message});
+    }
+    res.json(korisnikData)
+});
+
 //post za detalje studenata
 app.post("/detaljiStudenta",async(req,res)=>{
     let detaljiStudenta = req.body;
@@ -36,19 +50,20 @@ app.post("/detaljiStudenta",async(req,res)=>{
     res.json(detaljiStudenta)
 });
 
-//post za korisnike
-app.post("/korisnici",async(req,res)=>{
-    let korisnikData = req.body;
+//post za detalje poslodavca
+app.post("/detaljiPoslodavca",async(req,res)=>{
+    let detaljiPoslodavca = req.body;
 
     let id;
     try{
-        id = await auth.registerKorisnik(korisnikData);
+        id = await auth.unesiPodatkePoslodavca(detaljiPoslodavca);
     }
     catch(e){
         res.status(500).json({error: e.message});
     }
-    res.json(korisnikData)
+    res.json(detaljiPoslodavca)
 });
+
 //auth za korisnike
 app.post("/auth",async(req,res)=>{
 
