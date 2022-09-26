@@ -1,0 +1,169 @@
+[33mcommit 974b23478c95fa0e69b580af815dda250b7cc6e0[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Mon Sep 26 21:59:06 2022 +0200
+
+    deployment na heroku
+
+[33mcommit fa75ffc387b9a68feaa88f432791827adf475534[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Mon Sep 26 21:33:17 2022 +0200
+
+    Implementacija search bara
+
+[33mcommit 515e5ae9520ef45a6c1ae98f2d43530fcad34cad[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Mon Sep 26 19:24:23 2022 +0200
+
+    Brisanje prijava i brisanje ponuda
+
+[33mcommit fef3bc918782df141d323b8b207e357f82eb262e[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Mon Sep 26 16:33:49 2022 +0200
+
+    Dodan index za unique prijave ponuda
+
+[33mcommit ddc5586dc80d6128131860ba267b83f78f7326b5[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Mon Sep 26 15:33:51 2022 +0200
+
+    Prijava ponude
+
+[33mcommit 4dc783ef5e1396b3bdad2ca9539d3f50acbfb4c3[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Mon Sep 26 13:37:15 2022 +0200
+
+    Patch za detalje poslodavca i studenta
+
+[33mcommit 3a0c9e79171c2a1cb0ccd220b2bdf67d7940f7f2[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Mon Sep 26 11:00:19 2022 +0200
+
+    Objavljene ponude na stranici ponude + moje ponude za profil poslodavca
+
+[33mcommit 531602909ae8bbb3adaa9e17d313d6ab64e4f042[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Sun Sep 25 23:59:28 2022 +0200
+
+    Detalji Studenta i Poslodavca složeni, priprema za update, priprema za listanje kartica
+
+[33mcommit 1d14ef5fd376c808c9a678fb2f0e25bbb7bf5296[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Sun Sep 25 16:02:31 2022 +0200
+
+    Objavljivanje ponuda
+
+[33mcommit ffc73b0c51a4ac715747a2e6c1be89d37dce2663[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Sun Sep 25 04:25:05 2022 +0200
+
+    Odvojeni detalji studenta i poslodavca
+
+[33mcommit 3ccd15010d7298e55c546aff53c6357a72db42be[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Sat Sep 24 22:16:23 2022 +0200
+
+    post za detalje studenta
+
+[33mcommit 9edae71fc59d2c33e95be42ffac59a066b796f83[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Thu Sep 15 17:48:44 2022 +0200
+
+    Backend autentifikacija sa jwtoken gotova
+
+[33mcommit d874ee3d4f4c693c42bd178785b760d2ef70463d[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Thu Sep 15 15:46:54 2022 +0200
+
+    Slaganje tokena
+
+[33mcommit 68e01e8d20c9fece8993263520fdff8cf800b5c3[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Wed Sep 14 18:27:11 2022 +0200
+
+    Post/Get za poslodavce
+
+[33mcommit 481bf861af995cf0253a1628feaaca5e33a5525b[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Wed Sep 14 14:52:56 2022 +0200
+
+    Get i Post rade na mongo
+
+[33mcommit 26e5dab20fa91262fe7e5fdbba027395224b1af8[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Tue Sep 13 17:18:18 2022 +0200
+
+    Primanje podatka z frontenda
+    
+    dela
+
+[33mcommit 4fcd6cb5e51844bcc32502c62a6342787033e1a2[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Fri Jun 10 11:44:42 2022 +0200
+
+    Get/Post/Patch/Delete za detalje studenta i biznisa
+
+[33mcommit 4f93bdd48f6d5034c9bfc79a0aa2e257f0e1cab6[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Fri Jun 10 11:07:47 2022 +0200
+
+    Get/Post/Patch/Delete ponude
+
+[33mcommit 1bc9b257c1f7d0e51b8872f4a59c250605009daa[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Fri Jun 10 09:19:06 2022 +0200
+
+    Get/Post/Patch/Delete za poslodavce
+
+[33mcommit 66f1c565886f7ee025b2367f4f85451a7a1d4816[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Fri Jun 10 09:07:00 2022 +0200
+
+    Delete za studente
+
+[33mcommit 6115454a236ceb370c25ed5a9f6fb20ff733b726[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Fri Jun 10 08:55:17 2022 +0200
+
+    Patch za studente
+
+[33mcommit 13aa7cefcef4e3fd283e425ea31a6f4f211d6a8d[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Fri Jun 10 07:36:48 2022 +0200
+
+    get/post test za studente
+
+[33mcommit 5bef3719b79be2308e36550c54c5afc7fd641887[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Fri Jun 10 07:25:29 2022 +0200
+
+    Insomnia test
+
+[33mcommit 5c0c0c630c5816c9514e0f10e89ce9ff287022dc[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Thu Jun 9 20:23:56 2022 +0200
+
+    Hello world test
+
+[33mcommit d59b9cd2c28ac0bb5cc68aff4309672805f17769[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Thu Jun 9 18:44:54 2022 +0200
+
+    nodemon+express
+
+[33mcommit ebdc6131b0a8637af2790fe87a493a3217691b5c[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Thu Jun 9 18:39:18 2022 +0200
+
+    npm run serve napravljen
+
+[33mcommit 64f703a2d57a22b86ebe0245bae5ed4be3020e5b[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Thu Jun 9 17:30:15 2022 +0200
+
+    npm init
+
+[33mcommit 46345c8eccb04583715f4f6e287f6cdb1b0f5caf[m
+Author: erikturkovic <eturkovic@student.unipu.hr>
+Date:   Thu Apr 14 14:07:25 2022 +0200
+
+    Initial commit
