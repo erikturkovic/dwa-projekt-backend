@@ -279,5 +279,5 @@ app.get("/tajna", (req, res) => {
 
   res.json({ message: "yo: " + req.jwt.email });
 });
-
-app.listen(port, () => console.log(`Slušam na portu ${port}`));
+app.listen(process.env.PORT || 3000)
+//app.listen(port, () => console.log(`Slušam na portu ${port}`));
