@@ -172,7 +172,13 @@ app.get("/detaljiPonuda", async (req, res) => {
   let selekcija = {};
   if (query.objavio) {
     selekcija.objavio = query.objavio;
+  }else if(query.imePrakse){
+    selekcija.imePrakse=query.imePrakse
+  }else if(query.objavio){
+    selekcija.objavio=query.objavio
   }
+
+
   let cursor = await kolekcija.find(selekcija);
   let detaljiPonuda = await cursor.toArray();
   res.status(200);
