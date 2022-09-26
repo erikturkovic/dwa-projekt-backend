@@ -123,8 +123,14 @@ app.post("/detaljiPonuda",async(req,res)=>{
 //Get za objave ponuda
 app.get("/detaljiPonuda",async(req,res)=>{
     let db = await connect();
+    let query = req.query;
     let kolekcija = db.collection("detaljiPonuda");
-    let cursor = await kolekcija.find({},{fields:{email: true }});
+
+    let selekcija ={};
+    if (query.objavio){
+        selekcija.objavio = query.objavio
+    }
+    let cursor = await kolekcija.find(selekcija);
     let detaljiPonuda = await cursor.toArray();
     res.status(200);
     res.json(detaljiPonuda);
