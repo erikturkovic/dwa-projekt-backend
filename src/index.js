@@ -180,6 +180,19 @@ app.get("/detaljiPonuda", async (req, res) => {
   res.json(detaljiPonuda);
 });
 
+//post prijave ponuda
+app.post("/prijavljenePonude", async (req, res) => {
+    let prijavljenePonude = req.body;
+  
+    let id;
+    try {
+      id = await auth.prijaviPonudu(prijavljenePonude);
+    } catch (e) {
+      res.status(500).json({ error: e.message });
+    }
+    res.json(prijavljenePonude);
+  });
+
 //auth za korisnike
 app.post("/auth", async (req, res) => {
   let korisnikData = req.body;

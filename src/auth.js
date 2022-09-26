@@ -55,6 +55,18 @@ export default {
     let result = await db.collection("detaljiPonuda").insertOne(doc);
   },
 
+  async prijaviPonudu(prijavljena) {
+    let db = await connect();
+    let doc = {
+      prijavio: prijavljena.email,
+      prijavljeno: prijavljena.prijavljeno,
+      idPonude : prijavljena.idPonude,
+
+    };
+    let result = await db.collection("prijavljenePonude").insertOne(doc);
+  },
+
+
   async registerKorisnik(korisnikData) {
     let db = await connect();
 
