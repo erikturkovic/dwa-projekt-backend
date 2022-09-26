@@ -61,6 +61,7 @@ export default {
       prijavio: prijavljena.email,
       prijavljeno: prijavljena.prijavljeno,
       idPonude : prijavljena.idPonude,
+      imePrakse : prijavljena.imePrakse,
 
     };
     let result = await db.collection("prijavljenePonude").insertOne(doc);

@@ -72,7 +72,6 @@ app.get("/detaljiStudenta", async (req, res) => {
   res.json(korisnikData);
 });
 
-
 //Patch za studente
 app.patch("/detaljiStudenta/:id", async (req, res) => {
   let id = req.params.id;
@@ -89,7 +88,7 @@ app.patch("/detaljiStudenta/:id", async (req, res) => {
   );
 
   if (result && result.modifiedCount == 1) {
-    res.json({ status: "success" ,});
+    res.json({ status: "success" });
   } else {
     res.json({
       status: "fail",
@@ -129,27 +128,27 @@ app.get("/detaljiPoslodavca", async (req, res) => {
 
 //patch za detalje poslodavca
 app.patch("/detaljiPoslodavca/:id", async (req, res) => {
-    let id = req.params.id;
-    let data = req.body;
-    delete data._id;
-  
-    let db = await connect();
-  
-    let result = await db.collection("detaljiPoslodavca").updateOne(
-      { _id: mongo.ObjectId(id) },
-      {
-        $set: data,
-      }
-    );
-  
-    if (result && result.modifiedCount == 1) {
-      res.json({ status: "success" ,});
-    } else {
-      res.json({
-        status: "fail",
-      });
+  let id = req.params.id;
+  let data = req.body;
+  delete data._id;
+
+  let db = await connect();
+
+  let result = await db.collection("detaljiPoslodavca").updateOne(
+    { _id: mongo.ObjectId(id) },
+    {
+      $set: data,
     }
-  });
+  );
+
+  if (result && result.modifiedCount == 1) {
+    res.json({ status: "success" });
+  } else {
+    res.json({
+      status: "fail",
+    });
+  }
+});
 
 //post objave ponuda
 app.post("/detaljiPonuda", async (req, res) => {
@@ -179,7 +178,7 @@ app.get("/detaljiPonuda", async (req, res) => {
   res.status(200);
   res.json(detaljiPonuda);
 });
-
+//get prijava ponuda
 app.get("/prijavljenePonude", async (req, res) => {
   let db = await connect();
   let query = req.query;
@@ -188,6 +187,8 @@ app.get("/prijavljenePonude", async (req, res) => {
   let selekcija = {};
   if (query.idPonude) {
     selekcija.idPonude = query.idPonude;
+  } else {
+    selekcija.prijavio = query.prijavio;
   }
   let cursor = await kolekcija.find(selekcija);
   let detaljiPonude = await cursor.toArray();
@@ -195,18 +196,60 @@ app.get("/prijavljenePonude", async (req, res) => {
   res.json(detaljiPonude);
 });
 
+//Delete za objavljene ponude
+app.delete("/detaljiPonuda/:id", async (req, res) => {
+  let id = req.params.id;
+  let data = req.body;
+  let db = await connect();
+  let query = req.query;
+  let kolekcija = db.collection("detaljiPonuda");
+
+  let selekcija = {};
+  if (query._id) {
+    selekcija._id = query._id;
+  }
+
+  const result = await kolekcija.deleteOne(selekcija);
+  if (result.deletedCount === 1) {
+    console.log("Successfully deleted one document.");
+  } else {
+    console.log("No documents matched the query. Deleted 0 documents.");
+  }
+});
+
 //post prijave ponuda
 app.post("/prijavljenePonude", async (req, res) => {
-    let prijavljenePonude = req.body;
-  
-    let id;
-    try {
-      id = await auth.prijaviPonudu(prijavljenePonude);
-    } catch (e) {
-      res.status(500).json({ error: e.message });
-    }
-    res.json(prijavljenePonude);
-  });
+  let prijavljenePonude = req.body;
+
+  let id;
+  try {
+    id = await auth.prijaviPonudu(prijavljenePonude);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+  res.json(prijavljenePonude);
+});
+
+//delete za prijavljene ponude
+app.delete("/prijavljenePonude/:id", async (req, res) => {
+  let id = req.params.id;
+  let data = req.body;
+  let db = await connect();
+  let query = req.query;
+  let kolekcija = db.collection("prijavljenePonude");
+
+  let selekcija = {};
+  if (query._id) {
+    selekcija._id = query._id;
+  }
+
+  const result = await kolekcija.deleteOne(selekcija);
+  if (result.deletedCount === 1) {
+    console.log("Successfully deleted one document.");
+  } else {
+    console.log("No documents matched the query. Deleted 0 documents.");
+  }
+});
 
 //auth za korisnike
 app.post("/auth", async (req, res) => {
