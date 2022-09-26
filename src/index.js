@@ -180,6 +180,21 @@ app.get("/detaljiPonuda", async (req, res) => {
   res.json(detaljiPonuda);
 });
 
+app.get("/prijavljenePonude", async (req, res) => {
+  let db = await connect();
+  let query = req.query;
+  let kolekcija = db.collection("prijavljenePonude");
+
+  let selekcija = {};
+  if (query.idPonude) {
+    selekcija.idPonude = query.idPonude;
+  }
+  let cursor = await kolekcija.find(selekcija);
+  let detaljiPonude = await cursor.toArray();
+  res.status(200);
+  res.json(detaljiPonude);
+});
+
 //post prijave ponuda
 app.post("/prijavljenePonude", async (req, res) => {
     let prijavljenePonude = req.body;
