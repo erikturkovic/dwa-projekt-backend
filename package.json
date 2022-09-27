@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/erikturkovic/dwa-projekt-backend#readme",
   "dependencies": {
+    "babel-cli": "^6.26.0",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
