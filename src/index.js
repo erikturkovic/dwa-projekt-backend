@@ -172,12 +172,11 @@ app.get("/detaljiPonuda", async (req, res) => {
   let selekcija = {};
   if (query.objavio) {
     selekcija.objavio = query.objavio;
-  }else if(query.imePrakse){
-    selekcija.imePrakse=query.imePrakse
-  }else if(query.objavio){
-    selekcija.objavio=query.objavio
+  } else if (query.imePrakse) {
+    selekcija.imePrakse = query.imePrakse;
+  } else if (query.objavio) {
+    selekcija.objavio = query.objavio;
   }
-
 
   let cursor = await kolekcija.find(selekcija);
   let detaljiPonuda = await cursor.toArray();
@@ -279,5 +278,5 @@ app.get("/tajna", (req, res) => {
 
   res.json({ message: "yo: " + req.jwt.email });
 });
-app.listen(port || 3000)
+app.listen(process.env.PORT || 5000);
 //app.listen(port, () => console.log(`Slušam na portu ${port}`));
